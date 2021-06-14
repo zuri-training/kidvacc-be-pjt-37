@@ -3,8 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
 # C extensions
 *.so
+.vscode
 
 # Distribution / packaging
 .Python
@@ -109,6 +111,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+kidvac
 
 # Spyder project settings
 .spyderproject
