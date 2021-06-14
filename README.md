@@ -5,4 +5,4 @@
  * choose between  a private and a public hospital,
  * book an appointment for the vacination of their ward from the chosen hospital,
  * make payment for the booked appointment if it is required and,
- * get a confimation  and reminder of their booked appointment for the vacination of thier ward/children
+ * get a confimation  and reminder of their booked appointment for the vacination of their ward/children
