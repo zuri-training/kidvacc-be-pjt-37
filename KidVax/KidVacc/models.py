@@ -9,23 +9,23 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 
 # Create your models here.
 class child_details(models.Model):
-    Fname = models.CharField(max_length=100)
-    Mname = models.CharField(max_length=100)
-    Lname = models.CharField(max_length=100)
+    First_name = models.CharField(max_length=100)
+    Middle_name = models.CharField(max_length=100)
+    Last_name = models.CharField(max_length=100)
     Gender = models.TextField(max_length=25)
     Date_of_birth = models.DateField
-    Weight = models.CharField(max_length=30)
     Blood_group = models.CharField(max_length=25)
     Genotype = models.TextField()
     Vaccination_history = models.TextField(max_length=250)
     images = models.ImageField('images')
 
 
-class parent_details(models.Model):
-    Fname = models.CharField(max_length=100)
-    Lname = models.CharField(max_length=100)
+class user(models.Model):
+    First_name = models.CharField(max_length=100)
+    Last_name = models.CharField(max_length=100)
     Gender = models.TextField(max_length=25)
     Email_address = models.EmailField(max_length=250)
+    Password = models.TextField()
     Phone_number = models.IntegerField()
     images = models.ImageField('images')
 
@@ -39,4 +39,13 @@ class hospital_type(models.Model):
     hospital_type = models.TextChoices('hospitalType','public private')
     name = models.CharField(max_length=200)
     hospital = models.CharField(blank=True, choices=hospital_type.choices, max_length=100)
+
+
+class appointment(models.Model):
+    date = models.DateField()
+    start_time = models.TimeField
+    end_time = models.TimeField
+    user = models.ForeignKey(user, on_delete=models.CASCADE)
+
+
 
