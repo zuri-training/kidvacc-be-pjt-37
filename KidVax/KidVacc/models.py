@@ -8,7 +8,7 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 
 
 # Create your models here.
-class child_details(models.Model):
+class child(models.Model):
     First_name = models.CharField(max_length=100)
     Middle_name = models.CharField(max_length=100)
     Last_name = models.CharField(max_length=100)
@@ -20,7 +20,7 @@ class child_details(models.Model):
     images = models.ImageField('images')
 
 
-class user(models.Model):
+class parent(models.Model):
     First_name = models.CharField(max_length=100)
     Last_name = models.CharField(max_length=100)
     Gender = models.TextField(max_length=25)
@@ -45,7 +45,7 @@ class appointment(models.Model):
     date = models.DateField()
     start_time = models.TimeField
     end_time = models.TimeField
-    user = models.ForeignKey(user, on_delete=models.CASCADE)
+    parent = models.ForeignKey(parent, on_delete=models.CASCADE)
 
 
 
