@@ -91,21 +91,3 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
 
 
-
-   
-
-    
-    
-    
-
-
-
-    # def validate(self,attrs):
-    #     if User.objects.filter(email=attrs['email']).exists():
-    #         raise serializers.ValidationError(
-    #             {'email',('Email is already in use ')})
-    #     return super().validate(attrs)
-        
-    
-        #('id', 'username','email', 'password',) #'Unique _id_no'
-     
