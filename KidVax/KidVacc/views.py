@@ -38,6 +38,7 @@ class DetailHospital_Details(generics.RetrieveUpdateDestroyAPIView):
 class ListHospital_Type(generics.ListCreateAPIView):
      queryset = Hospital_Type.objects.all()
      serializer_class = Hospital_TypeSerializer
+
 class DetailHospital_Type(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hospital_Type.objects.all()
     serializer_class = Hospital_TypeSerializer
@@ -48,5 +49,4 @@ class ListAppointment(generics.ListCreateAPIView):
 
 class DetailAppointment(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
-    serializer_class = AppointmentSerializer
-    
+    serializer_class = AppointmentSerializer  
