@@ -48,8 +48,8 @@ class Appointment(models.Model):
     end_time = models.TimeField
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.parent
+    #def __str__(self):
+       #return self.parent
 
 
 
