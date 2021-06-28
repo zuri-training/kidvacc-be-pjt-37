@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
-#from django.shortcuts import render, get_object_or_404
-#from rest_framework.response import Response
-#from rest_framework import status
+from django.shortcuts import render, get_object_or_404
+from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import generics
 from models import Child, Parent, Hospital_Details, Hospital_Type, Appointment
 from serializers import ChildSerializer, ParentSerializer, Hospital_DetailsSerializer, Hospital_TypeSerializer, \
     AppointmentSerializer
-#from drf_multiple_model.views import ObjectMultipleModelAPIView
+from drf_multiple_model.views import ObjectMultipleModelAPIView
 
 
 # Create your views here.
@@ -61,10 +61,10 @@ class DetailAppointment(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
-    #def AppointmentCreateAPIView(CreateAPIView):
-       # appointment = Appointment.objects.order_by('created_at')
-       # appointment = Appointment.objects.filter(owner=Parent).order_by('created_at')
+    def AppointmentCreateAPIView(CreateAPIView):
+        appointment = Appointment.objects.order_by('created_at')
+        Appointment.objects.filter(owner=Parent).order_by('created_at')
 
-   # def perform_create(self, serializer):
-      #  appointment = get_object_or_404(Appointment, pk=self.kwargs['pk'])
-       # serializer.save(user=self.request.user, appointment=appointment)
+    def perform_create(self, serializer):
+        appointment = get_object_or_404(Appointment, pk=self.kwargs['pk'])
+        serializer.save(user=self.request.user, appointment=appointment)
