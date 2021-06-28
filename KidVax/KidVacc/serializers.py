@@ -82,4 +82,3 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
 
 
-
