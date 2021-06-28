@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
-from django.shortcuts import render, get_object_or_404
-from rest_framework.response import Response
-from rest_framework import status
+#from django.shortcuts import render, get_object_or_404
+#from rest_framework.response import Response
+#from rest_framework import status
 from rest_framework import generics
 from models import Child, Parent, Hospital_Details, Hospital_Type, Appointment
 from serializers import ChildSerializer, ParentSerializer, Hospital_DetailsSerializer, Hospital_TypeSerializer, \
     AppointmentSerializer
-from drf_multiple_model.views import ObjectMultipleModelAPIView
+#from drf_multiple_model.views import ObjectMultipleModelAPIView
 
 
 # Create your views here.
