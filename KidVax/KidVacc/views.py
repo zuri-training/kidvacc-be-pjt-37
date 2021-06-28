@@ -61,10 +61,10 @@ class DetailAppointment(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
-    def AppointmentCreateAPIView(CreateAPIView):
-        appointment = Appointment.objects.order_by('created_at')
-        appointment = Appointment.objects.filter(owner=Parent).order_by('created_at')
+    #def AppointmentCreateAPIView(CreateAPIView):
+       # appointment = Appointment.objects.order_by('created_at')
+       # appointment = Appointment.objects.filter(owner=Parent).order_by('created_at')
 
-    def perform_create(self, serializer):
-        appointment = get_object_or_404(Appointment, pk=self.kwargs['pk'])
-        serializer.save(user=self.request.user, appointment=appointment)
+   # def perform_create(self, serializer):
+      #  appointment = get_object_or_404(Appointment, pk=self.kwargs['pk'])
+       # serializer.save(user=self.request.user, appointment=appointment)
