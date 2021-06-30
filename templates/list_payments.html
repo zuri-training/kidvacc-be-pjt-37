@@ -1,0 +1,6 @@
+{% for payment in object_list %}
+<p>{{payment.email}}</p>
+<p>{{payment.reference}}</p>
+<h4>{{payment.paid_at}}</h4>
+<h5>{{payment.status}}</h5>
+{% endfor %}
