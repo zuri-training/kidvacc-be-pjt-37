@@ -112,6 +112,9 @@ ENV/
 env.bak/
 venv.bak/
 kidvac
+kidvax_env
+Pipfile
+Pipfile.lock
 
 # Spyder project settings
 .spyderproject
@@ -130,3 +133,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
