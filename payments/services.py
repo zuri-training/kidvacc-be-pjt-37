@@ -8,8 +8,7 @@ paystack_secret_key = os.environ.get('PAYSTACK_SECRET_KEY')
 paystack_charge = Charge(secret_key=paystack_secret_key)
 
    
-response = paystack_charge.start_charge( email="katchyemma@gmail.com",amount="450", bank={"account_number":"0000000000","code":"057"},birthday="1995-04-03")
-print(response)
+
     
 # reference = response['data']['reference']
     
