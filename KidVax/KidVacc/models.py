@@ -1,4 +1,3 @@
-import datetime
 from django.db import models
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
@@ -47,9 +46,6 @@ class Appointment(models.Model):
     start_time = models.TimeField
     end_time = models.TimeField
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
-
-    def __str__(self):
-       return self.parent
 
 
 
