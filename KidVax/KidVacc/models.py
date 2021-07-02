@@ -1,6 +1,5 @@
 import datetime
 from django.db import models
-from django.contrib.auth.models import User 
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
 
@@ -15,11 +14,12 @@ class Child(models.Model):
     Middle_name = models.CharField(max_length=100)
     Last_name = models.CharField(max_length=100)
     Gender = models.TextField(max_length=25)
-    #Date_of_birth = models.DateField()
+    Date_of_birth = models.DateField
     Blood_group = models.CharField(max_length=25)
     Genotype = models.TextField()
     Vaccination_history = models.TextField(max_length=250)
     images = models.ImageField('images')
+
 
 class Parent(models.Model):
     First_name = models.CharField(max_length=100)

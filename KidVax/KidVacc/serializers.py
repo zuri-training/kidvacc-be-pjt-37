@@ -11,8 +11,10 @@ class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = [
-            'id', 'First_name', 'Middle_name', 'Last_name', 'Gender', 'Blood_group', 'Genotype', 'Vaccination_history', 'images',
-        ] #'Date_of_birth'
+            'id', 'First_name', 'Middle_name', 'Last_name', 'Gender', 'Date_of_birth',
+            'Blood_group', 'Genotype', 'Vaccination_history', 'images'
+        ]
+
 
 class ParentSerializer(serializers.ModelSerializer):
     First_name = serializers.CharField(required=True,
