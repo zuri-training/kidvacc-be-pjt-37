@@ -18,7 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('payments/', include('payments.urls'))
-   # path('api/', include("KidVacc.urls")),
-    #path('KidVacc/', include("KidVacc.urls"))
+    path('api/child/', include('KidVacc.urls')), 
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/child/rest-auth/', include('rest_auth.urls')),
+    path('api/child/rest-auth/registration/', include('rest_auth.registration.urls')),
+  
+
 ]
