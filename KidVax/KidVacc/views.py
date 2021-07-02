@@ -2,10 +2,10 @@ from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import generics, permissions
+from rest_framework import generics
 from .models import Child, Parent, Hospital_Details, Hospital_Type, Appointment
-from .permissions import IsAuthorOrReadOnly 
-from .serializers import ChildSerializer, ParentSerializer, Hospital_DetailsSerializer, Hospital_TypeSerializer, AppointmentSerializer
+from .serializers import ChildSerializer, ParentSerializer, Hospital_DetailsSerializer, Hospital_TypeSerializer, \
+    AppointmentSerializer
 
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 
@@ -13,55 +13,52 @@ from drf_multiple_model.views import ObjectMultipleModelAPIView
 # Create your views here.
 
 
-class ChildList(generics.ListCreateAPIView):
+class ListChild(generics.ListCreateAPIView):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
 
 
-class ChildDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+class DetailChild(generics.RetrieveUpdateDestroyAPIView):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
 
 
-class ParentList(generics.ListCreateAPIView):
+class ListParent(generics.ListCreateAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
 
 
-class ParentDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+class DetailParent(generics.RetrieveUpdateDestroyAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
 
 
-class Hospital_DetailsList(generics.ListCreateAPIView):
+class ListHospital_Details(generics.ListCreateAPIView):
     queryset = Hospital_Details.objects.all()
     serializer_class = Hospital_DetailsSerializer
 
 
-class Hospital_DetailsDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+class DetailHospital_Details(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hospital_Details.objects.all()
     serializer_class = Hospital_DetailsSerializer
 
 
-class Hospital_TypeList(generics.ListCreateAPIView):
+class ListHospital_Type(generics.ListCreateAPIView):
     queryset = Hospital_Type.objects.all()
     serializer_class = Hospital_TypeSerializer
 
 
-class Hospital_TypeDetail(generics.RetrieveUpdateDestroyAPIView):
+class DetailHospital_Type(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hospital_Type.objects.all()
     serializer_class = Hospital_TypeSerializer
 
 
-class AppointmentList(generics.ListCreateAPIView):
+class ListAppointment(generics.ListCreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
 
-class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
+class DetailAppointment(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
