@@ -38,6 +38,8 @@ class Parent(models.Model):
     images = models.ImageField('images')
     created = models.DateTimeField(auto_created=True)
 
+    def __str__(self):
+        return self.Last_name
 
 class Hospital_Details(models.Model):
     hospital_Name = models.TextChoices('hospitalName', 'hosp1 hosp2')
