@@ -11,8 +11,8 @@ class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = [
-            'id', 'First_name', 'Middle_name', 'Last_name', 'Gender', 'Date_of_birth',
-                        'Blood_group', 'Genotype', 'Vaccination_history','images'
+            'id', 'First_name', 'Middle_name', 'Last_name', 'Gender', 'Date_of_birth', 
+            'Blood_group', 'Genotype', 'Vaccination_history','images','date_created'
         ]
 
 
@@ -67,7 +67,7 @@ class Hospital_DetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Details
         fields = [
-            'hospital_Name', 'name', 'hospital'
+            'hospital_Name', 'name', 'hospital', 'address', 'Vaccines' 
         ]
 
 
@@ -76,7 +76,7 @@ class Hospital_TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Type
         fields = [
-            'hospital_type','name' 
+            'hospital_type','name', 'hospital'
         ]
 
 
