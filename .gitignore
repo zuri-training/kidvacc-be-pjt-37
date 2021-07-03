@@ -112,6 +112,10 @@ ENV/
 env.bak/
 venv.bak/
 kidvac
+kdv_env
+Pipfile
+Pipfile.lock
+
 
 # Spyder project settings
 .spyderproject
