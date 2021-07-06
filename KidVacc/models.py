@@ -63,4 +63,4 @@ class Appointment(models.Model):
     # hospital_details = models.ForeignKey(Hospital_Details, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.parent
+        return str(self.parent)
