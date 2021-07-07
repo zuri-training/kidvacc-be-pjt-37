@@ -1,3 +1,4 @@
+from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import Child, Parent, Hospital_Details, Hospital_Type,  Appointment
@@ -25,8 +26,8 @@ class ParentSerializer(serializers.ModelSerializer):
     Last_name = serializers.CharField(required=True,
                                     validators=[UniqueValidator(queryset=Parent.objects.all())])
 
-    Gender = serializers.CharField(required=True,
-                                    validators=[UniqueValidator(queryset=Parent.objects.all())])
+    Gender = serializers.CharField(required=True)
+                                    # validators=[UniqueValidator(queryset=Parent.objects.all())])
 
     Email_address = serializers.EmailField(required=True,
                                     validators=[UniqueValidator(queryset=Parent.objects.all())])
@@ -43,7 +44,7 @@ class ParentSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         parent = Parent.objects.create(validated_data['First_name'],
                                         validated_data['Last_name'],
-                                        validated_data['Gender'],
+                                         ['Gender'],
                                         validated_data['Email_address'],
                                         validated_data['Password'],
                                         validated_data['Phone_number'],
@@ -60,6 +61,13 @@ class ParentSerializer(serializers.ModelSerializer):
         ]
 
         
+
+class ParentLoginSerializer(ParentSerializer):
+    class Meta:
+        model = Parent
+        fields = [
+            'Email_address','Password'
+        ]
 
 
 class Hospital_DetailsSerializer(serializers.ModelSerializer):

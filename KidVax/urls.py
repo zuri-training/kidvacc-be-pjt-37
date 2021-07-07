@@ -20,11 +20,11 @@ from django.urls import path, include
 urlpatterns = [
     path('payments/', include('payments.urls')),
     path('admin/', admin.site.urls),
-    # path('api/', include("KidVacc.urls")),
+    path('api/v1/', include("KidVacc.urls")),
     path('KidVacc/', include("KidVacc.urls")),
     path('api/child/', include('KidVacc.urls')),
     # path('api-auth/', include('KidVacc.urls')), 
     path('api-auth/', include('rest_framework.urls')),
-    path('api/child/rest-auth/', include('rest_auth.urls')),
-    path('api/child/rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('api/parent/rest-auth/', include('rest_auth.urls')),
+    path('api/parent/rest-auth/registration/', include('rest_auth.registration.urls')),
 ]

@@ -2,7 +2,7 @@ Register as a Parent
 A parent creates an account on the Kidvacc site to be able to able to book an appointment for their Children.
  and receive a token.
 
-URL : /api/v1/user/register
+URL : https://kidvacc.herokuapp.com/api/child/rest-auth/registration/
 
 Method : POST
 

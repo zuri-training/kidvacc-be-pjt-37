@@ -24,7 +24,7 @@ class Child(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.First_name
+        return '{} {}'.format(self.First_name, self.Last_name) 
     
 
 
@@ -39,7 +39,7 @@ class Parent(models.Model):
     created = models.DateTimeField(auto_created=True)
 
     def __str__(self):
-        return self.Last_name
+       return '{} {}'.format(self.First_name, self.Last_name)
 
 class Hospital_Details(models.Model):
     hospital_Name = models.TextChoices('hospitalName', 'hosp1 hosp2')
@@ -61,6 +61,7 @@ class Appointment(models.Model):
     end_time = models.TimeField
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
     # hospital_details = models.ForeignKey(Hospital_Details, on_delete=models.CASCADE)
+    # hospital_type = models.ForeignKey(Hospital_Type, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.parent
