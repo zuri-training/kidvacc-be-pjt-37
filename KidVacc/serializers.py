@@ -76,18 +76,15 @@ class Hospital_TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Type
         fields = [
-            'hospital_type','name', 'hospital'
+            'hospital_type','name',
         ]
 
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
 
-    class Meta :
-        models = Appointment
-        fields = [
-            'date', 'start_time', 'end_time', 'parent'
-        ]
+    class Meta:
+        model = Appointment
+        fields = '__all__'
 
-
-
+# class MultipleChoiceFieldSerializer(fields.MultipleChoiceField):
