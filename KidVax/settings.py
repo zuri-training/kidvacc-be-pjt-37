@@ -68,6 +68,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],    
 }
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'KidVacc.serializers.UserParentUpdateSerializer',
+}
+LOGIN_REDIRECT_URL = 'child'
+LOGIN_URL = 'http://localhost:8000/rest-auth/login'
 
 
 MIDDLEWARE = [
