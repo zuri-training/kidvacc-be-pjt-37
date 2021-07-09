@@ -1,5 +1,4 @@
+ users can change their password on the site.
 
-
-
-https://kidvacc.herokuapp.com/api/child/rest-auth/password/reset/
-https://kidvacc.herokuapp.com/api/child/rest-auth/password/reset/confirm/
+ endpoint to change of Password :https://kidvacc.herokuapp.com/api/child/rest-auth/password/reset/
+                                :https://kidvacc.herokuapp.com/api/child/rest-auth/password/reset/confirm/
