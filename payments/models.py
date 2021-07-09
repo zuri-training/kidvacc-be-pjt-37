@@ -6,3 +6,4 @@ class Payment(models.Model):
 	status = models.CharField(max_length=20)
 	paid_at = models.DateTimeField(auto_now_add=True)
 	email = models.EmailField()
+
