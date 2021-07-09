@@ -65,10 +65,26 @@ class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
-    def AppointmentCreateAPIView(CreateAPIView):
-        appointment = Appointment.objects.order_by('created_at')
-        Appointment.objects.filter(owner=Parent).order_by('created_at')
 
-    def perform_create(self, serializer):
-        appointment = get_object_or_404(Appointment, pk=self.kwargs['pk'])
-        serializer.save(parent=self.request.parent, appointment=appointment)
+class AppointmentCreateAPIView(generics.CreateAPIView):
+    serializer_class = AppointmentSerializer
+    queryset = Appointment.objects.all()
+
+    def perform_create(self,serializer):
+        user = self.request.user
+        try:
+            serializer.save(parent=user)
+        except IntegrityError:
+            return Response({"detail":"An error occured, please try again."},status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+    # def AppointmentCreateAPIView(CreateAPIView):
+    #     appointment = Appointment.objects.order_by('created_at')
+    #     Appointment.objects.filter(owner=Parent).order_by('created_at')
+
+    # def perform_create(self, serializer):
+    #     appointment = get_object_or_404(Appointment, pk=self.kwargs['pk'])
+    #     serializer.save(parent=self.request.parent, appointment=appointment)

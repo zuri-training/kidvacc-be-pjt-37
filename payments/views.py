@@ -63,9 +63,9 @@ def verify_payment(request, reference):
                 return Response({"status":True}, status=status.HTTP_302_FOUND)
 
             if response5['status'] == False:
-                return JsonResponse({"status":False,"message":f"{response5['message']}"}, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse({"status":"False","message":f"{response5['message']}"}, status=status.HTTP_400_BAD_REQUEST)
            
-            return Response({"status":False, "message":"Unknown error occured"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status":"False", "message":"Unknown error occured"}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'GET':
