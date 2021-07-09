@@ -51,10 +51,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_auth',
     'rest_auth.registration',
+    'corsheaders',
 
-    # Local
+    #Local
     'KidVacc',
     'payments',
+
 ]
 
 REST_FRAMEWORK = {
@@ -66,9 +68,16 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],    
 }
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'KidVacc.serializers.UserParentUpdateSerializer',
+}
+LOGIN_REDIRECT_URL = 'child'
+LOGIN_URL = 'http://localhost:8000/rest-auth/login'
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -156,6 +165,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
+
+# Enable CORS on all Origin
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_PREFLIGHT_MAX_AGE = 86400
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
