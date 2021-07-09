@@ -71,17 +71,11 @@ REST_FRAMEWORK = {
     ],    
 }
 
-
-REST_AUTH_REGISTER_SERIALIZERS = {
-
-    'REGISTER_SERIALIZER':'KidVacc.serializers.ParentSerializer'
-}
-
 REST_AUTH_SERIALIZERS = {
-
-    'LOGIN_SERIALIZER' :
-    'KidVacc.serializers.ParentLoginSerializer'
+    'USER_DETAILS_SERIALIZER': 'KidVacc.serializers.UserParentUpdateSerializer',
 }
+LOGIN_REDIRECT_URL = 'child'
+LOGIN_URL = 'http://localhost:8000/rest-auth/login'
 
 # Enable CORS on all Origin
 
@@ -100,11 +94,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:4200",
     "https://web.postman.co",
+    "https://kidvacc.herokuapp.com",
+    "http://127.0.0.1:8000",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'change.allowed.com',
-]
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -125,6 +118,7 @@ CORS_ALLOW_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
+    'authentication',
 ]
 
 
