@@ -1,9 +1,10 @@
  # PROJECT NAME
 ## KIDVACC
 
-# Description:
-# kidvacc-be-pjt-37
- This is a site that links parents to their choice of hospital for the vaccination of their Ward/Children.The parents will be educated on the required vaccination to be administered to their wards/Children  based on their age range. Futhermore, the site enables parents to do the following:
+# DESCRIPTION:
+# kidvacc-be-pjt-37:
+
+ This is a site that links parents to their choice of hospital for the vaccination of their Ward/Children. The site enables parents  to be adequately informed and educated on the required vaccination to be administered to their wards/Children  based on their age range. However, a parent must be register to access the following features:
  * register their wards for vaccination
  * search , locate and choose the nearest  hospital to their location,
  * choose between  a private and a public hospital,
@@ -11,28 +12,27 @@
  * make payment for the booked appointment if it is required and,
  * get a confirmation  and reminder of their booked appointment for the vaccination of their ward/children
 
- This  is a project  built by the Project Team 37 , ZURI TRAINING. We are required to build a  a site and an application to solve an issues of  the vaccination of children  Hence, this Blog application was  built using [Django  Rest Framework]( https://www.django-rest-framework.org/) (https://www.djangoproject.com/) and  hosted on Heroku during production(https://kidvacc.herokuapp.com) 
-
-
-# INSTALLATION
-
-
-# Features:
-- Register a  new user (https://kidvacc.herokuapp.com/api/child/rest-auth/registration/)
-- Login user    (https://kidvacc.herokuapp.com/api/child/rest-auth/login/)
-- Logout user (https://kidvacc.herokuapp.com/api/child/rest-auth/logout/)
--password  reset (https://kidvacc.herokuapp.com/api/child/rest-auth/password/reset/)
-- book an appointment(https://kidvacc.herokuapp.com/api/child/appointment)
-- make a payment for the booked appointment(https://kidvacc.herokuapp.com/payment/my-make)
  
-#ENDPOINTS
-  end point to the child profile https://kidvacc.herokuapp.com/api/child/child
-  parent profile
+This  is a project  built by the Project Team 37 , ZURI TRAINING. We are required to build a  a site and an application to solve  issues on  the vaccination of children.  Hence, tthe backend API of this site, was  built using [Django  Rest Framework]( https://www.django-rest-framework.org/) (https://www.djangoproject.com/) and  hosted on Heroku during production(https://kidvacc.herokuapp.com)
+
+
+
+# Features/Endpoints:
+- Register a  new user: (https://kidvacc.herokuapp.com/api/child/rest-auth/registration/)
+- Login user   : (https://kidvacc.herokuapp.com/api/child/rest-auth/login/)
+- Logout user :(https://kidvacc.herokuapp.com/api/child/rest-auth/logout/)
+-password  reset: (https://kidvacc.herokuapp.com/api/child/rest-auth/password/reset/)
+- book an appointment:(https://kidvacc.herokuapp.com/api/child/appointment)
+- make a payment for the booked appointment:(https://kidvacc.herokuapp.com/payment/my-make)
+ 
+
+  end point to the child profile : https://kidvacc.herokuapp.com/api/child/child
+  parent profile : https://kidvacc.herokuapp.com/api/child/child
 
 
 
 # Requirements:
-This Project requires the following Versions:
+This Project requires the following  Application and Versions:
 
 ## BASIC 
 ```Python  (3.5, 3.6, 3.7, 3.8 , 3.9) ```
@@ -41,7 +41,7 @@ This Project requires the following Versions:
 
 
 # Installation:
-This application was built using a virtual enviromment(VENV).
+The backend of this site was built using a virtual enviromment(VENV).
 To  create  and activate the above virtual environment to install all dependencies in this project, open your terminal and run:
 ```
 ^^^^ creating a virtual environment ^^^^
@@ -51,9 +51,15 @@ py -m venv project-name
 project name\Scripts\activate.bat
 
 ^^^^^installation of django, django rest framework and other dependencies ^^^^^^
-py -m pip install
+py -m pip install the name of the application 
 
-^^^^^local command for running the application ^^^^^^
+^^^^^Installation of applications on  a requirement.txt file ^^^^^
+pip3 install -r requirements.txt (Python 3)
+
+^^^^^updating the requirements.txt file ^^^^^
+pip freeze > requirements.txt
+
+^^^^^local command for running the server of the application ^^^^^^
 python manage.py runserver
 ```
 
