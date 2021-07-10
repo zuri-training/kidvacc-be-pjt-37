@@ -1,7 +1,7 @@
 Logout Current User
 Get the details of the currently Authenticated User along with basic subscription information.
 
-URL : /api/v1/user/logout
+URL : /api/child/rest-auth/logout/
 
 Method : GET
 
