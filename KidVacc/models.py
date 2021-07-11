@@ -55,11 +55,17 @@ class Parent(models.Model):
 
 
 class Hospital_Details(models.Model):
-    hospital_Name = models.TextChoices('hospitalName', 'hosp1 hosp2')
+    HOSPITAL_NAME_CHOICES = (
+        ('hosp1','hosp1'),
+        ('hosp2', 'hosp2'),
+        )
+    VACCINE_CHOICES = (
+        ('Polio(IPV) Measles_mumps_rubella(MMR)','Polio(IPV) Measles_mumps_rubella(MMR)'),
+        )
     name = models.CharField(max_length=200)
-    hospital = models.CharField(blank=True, choices=hospital_Name.choices, max_length=200)
+    hospital = models.CharField(blank=True, choices=HOSPITAL_NAME_CHOICES, max_length=200)
     address = models.CharField("Address line 1", max_length=1024)
-    vaccines = models.TextChoices('vaccines', 'Polio(IPV) Measles_mumps_rubella(MMR)')
+    vaccines = models.CharField(max_length=200, choices=VACCINE_CHOICES)
 
 
 class Hospital_Type(models.Model):
