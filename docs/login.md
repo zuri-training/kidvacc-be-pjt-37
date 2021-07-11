@@ -1,7 +1,7 @@
 Login
 Used to collect a Token for a registered User.
 
-URL : /api/v1/user/login
+URL : /api/child/rest-auth/login/
 
 Method : POST
 
@@ -10,8 +10,10 @@ Auth required : yes
 Data constraints
 
 {
+    "username": "[unique name]",
     "email": "[valid email address]",
     "password": "[password in plain text]"
+    "password 2": "[reconfirm your password]",
 }
 <!-- Data example
 
