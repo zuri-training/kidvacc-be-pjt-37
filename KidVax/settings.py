@@ -14,6 +14,8 @@ import django_heroku
 import os
 from pathlib import Path
 from decouple import config
+from corsheaders.defaults import default_methods
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     
     # 3rd Party
+<<<<<<< HEAD
     'drf_yasg',
+=======
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
     'rest_framework',
     'drf_multiple_model',
     'rest_framework.authtoken',
@@ -75,14 +80,66 @@ REST_AUTH_SERIALIZERS = {
 LOGIN_REDIRECT_URL = 'child'
 LOGIN_URL = 'http://localhost:8000/api/child/rest-auth/login'
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'KidVacc.serializers.UserParentUpdateSerializer',
+}
+LOGIN_REDIRECT_URL = 'child'
+LOGIN_URL = 'http://localhost:8000/rest-auth/login'
+
+# Enable CORS on all Origin
+
+# CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_PREFLIGHT_MAX_AGE = 86400
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://www.website.com",
+    "http://localhost:3000",
+    "http://localhost:4200",
+    "https://web.postman.co",
+    "https://kidvacc.herokuapp.com",
+    "http://127.0.0.1:8000",
+]
+
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'authentication',
+]
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -167,6 +224,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
 
+<<<<<<< HEAD
 # Enable CORS on all Origin
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -176,6 +234,14 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_PREFLIGHT_MAX_AGE = 86400
 
 CORS_REPLACE_HTTPS_REFERER = True
+=======
+
+# AUTHENTICATION_BACKENDS = (
+    # ('django.contrib.auth.backends.ModelBackend'),
+# )
+
+
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
 
 
 

@@ -1,3 +1,5 @@
+#import uuid
+
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth import get_user_model 
@@ -5,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
+
 
 
 LEXERS = [item for item in get_all_lexers() if item[1]]
@@ -26,13 +29,15 @@ class Child(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.First_name
+        return '{} {}'.format(self.First_name, self.Last_name) 
     
-
-
 class Parent(models.Model):
     user = models.OneToOneField(
+<<<<<<< HEAD
         get_user_model(), on_delete=models.CASCADE, related_name='parent')
+=======
+    get_user_model(), on_delete=models.CASCADE, related_name='parent')
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
     First_name = models.CharField(max_length=100, blank=True)
     Last_name = models.CharField(max_length=100, blank=True)
     Gender = models.TextField(max_length=25,blank=True)
@@ -40,6 +45,10 @@ class Parent(models.Model):
     Phone_number = models.IntegerField(null=True)
     images = models.ImageField(upload_to= 'images', null=True)
     created = models.DateTimeField(auto_now_add=True)
+<<<<<<< HEAD
+=======
+
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
 
     def __str__(self):
         return f"{self.user.username} {self.Last_name}"
@@ -52,6 +61,10 @@ class Parent(models.Model):
     @receiver(post_save, sender=get_user_model())
     def save_user_parent(sender, instance, **kwargs):
         instance.parent.save()
+<<<<<<< HEAD
+=======
+    
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
 
 
 class Hospital_Details(models.Model):
@@ -83,7 +96,25 @@ class Appointment(models.Model):
     start_time = models.TimeField
     end_time = models.TimeField
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
-    # hospital_details = models.ForeignKey(Hospital_Details, on_delete=models.CASCADE)
+    
 
     def __str__(self):
-        return self.parent
+        return str(self.parent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

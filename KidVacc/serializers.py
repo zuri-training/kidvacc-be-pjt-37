@@ -1,10 +1,14 @@
+from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import Child, Parent, Hospital_Details, Hospital_Type,  Appointment
 from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
-# creating a model serializer
+<<<<<<< HEAD
+=======
 
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
+# creating a model serializer
 
 class ChildSerializer(serializers.ModelSerializer):
     
@@ -108,6 +112,10 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
+<<<<<<< HEAD
         fields = '__all__'
 
 # class MultipleChoiceFieldSerializer(fields.MultipleChoiceField):
+=======
+        fields = '__all__'
+>>>>>>> e70e3fac976cc3bdc4c71f1d3b6437393e7635d0
