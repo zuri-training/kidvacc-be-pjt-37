@@ -19,7 +19,7 @@ class ChildList(generics.ListCreateAPIView):
 
 
 class ChildDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+    # permission_classes = (IsAuthorOrReadOnly,)
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
 
@@ -30,7 +30,7 @@ class ParentList(generics.ListAPIView):
 
 
 class ParentDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+    # permission_classes = (IsAuthorOrReadOnly,)
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
 
@@ -41,7 +41,7 @@ class Hospital_DetailsList(generics.ListCreateAPIView):
 
 
 class Hospital_DetailsDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+    # permission_classes = (IsAuthorOrReadOnly,)
     queryset = Hospital_Details.objects.all()
     serializer_class = Hospital_DetailsSerializer
 
