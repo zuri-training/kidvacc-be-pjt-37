@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import status
 from rest_framework import generics, permissions
-from .models import Child, Parent, Hospital_Details, Hospital_Type, Appointment
+from .models import Child, Parent, Hospital_Details, Hospital_Type, Appointment, Vaccine
 from .permissions import IsAuthorOrReadOnly 
-from .serializers import ChildSerializer, ParentSerializer, Hospital_DetailsSerializer, Hospital_TypeSerializer, AppointmentSerializer
+from .serializers import ChildSerializer, ParentSerializer, Hospital_DetailsSerializer, Hospital_TypeSerializer, AppointmentSerializer, VaccineSerializer
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 
 
@@ -51,28 +51,20 @@ class Hospital_DetailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hospital_Details.objects.all()
     serializer_class = Hospital_DetailsSerializer
 
-
 class Hospital_TypeList(generics.ListCreateAPIView):
     queryset = Hospital_Type.objects.all()
     serializer_class = Hospital_TypeSerializer
-
 
 class Hospital_TypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Hospital_Type.objects.all()
     serializer_class = Hospital_TypeSerializer
 
 
+
+
 class AppointmentList(generics.ListCreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
-
-    def perform_create(self,serializer):
-        user = self.request.user
-        try:
-            serializer.save(parent=user.parent)
-        except IntegrityError:
-            return Response({"detail":"An error occured, please try again."},status=status.HTTP_400_BAD_REQUEST)
-
 
 class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
@@ -86,13 +78,19 @@ class AppointmentCreateAPIView(generics.CreateAPIView):
     def perform_create(self,serializer):
         user = self.request.user
         try:
-            serializer.save(parent=user.parent)
+            serializer.save(parent=user)
         except IntegrityError:
             return Response({"detail":"An error occured, please try again."},status=status.HTTP_400_BAD_REQUEST)
 
 
+class VaccineList(generics.ListCreateAPIView):
+    queryset = Vaccine.objects.all()
+    serializer_class = VaccineSerializer
 
 
+class VaccineDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Vaccine.objects.all()
+    serializer_class = VaccineSerializer
 
     # def AppointmentCreateAPIView(CreateAPIView):
     #     appointment = Appointment.objects.order_by('created_at')
