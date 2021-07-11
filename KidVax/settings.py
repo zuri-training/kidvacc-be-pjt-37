@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     
     # 3rd Party
-    'drf_yasg',
     'rest_framework',
     'drf_multiple_model',
     'rest_framework.authtoken',
@@ -102,6 +101,57 @@ CORS_ALLOWED_ORIGINS = [
     "https://web.postman.co",
     "https://kidvacc.herokuapp.com",
     "http://127.0.0.1:8000",
+]
+
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'authentication',
+]
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'KidVacc.serializers.UserParentUpdateSerializer',
+}
+LOGIN_REDIRECT_URL = 'child'
+LOGIN_URL = 'http://localhost:8000/rest-auth/login'
+
+# Enable CORS on all Origin
+
+# CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_PREFLIGHT_MAX_AGE = 86400
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://www.website.com",
+    "http://localhost:3000",
+    "http://localhost:4200",
+    "https://web.postman.co",
+    "https://kidvacc.herokuapp.com",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:5500",
 ]
 
 

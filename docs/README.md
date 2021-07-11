@@ -1,7 +1,7 @@
 REST API docs for Kidvacc API
 Base URL : Kidvacc API
 
-Open Endpoints
+~~~Open Endpoints~~~
 Open endpoints requires Authentication.
 
 Register : POST /api/child/rest-auth/registration/
