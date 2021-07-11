@@ -90,7 +90,7 @@ class Hospital_DetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Details
         fields = [
-            'hospital_Name', 'name', 'hospital', 'address', 'vaccines' 
+            'name', 'hospital', 'address', 'vaccines' 
         ]
 
 
