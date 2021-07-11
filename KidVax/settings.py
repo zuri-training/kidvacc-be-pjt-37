@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     
     # 3rd Party
+    'drf_yasg',
     'rest_framework',
     'drf_multiple_model',
     'rest_framework.authtoken',
@@ -72,7 +73,7 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'KidVacc.serializers.UserParentUpdateSerializer',
 }
 LOGIN_REDIRECT_URL = 'child'
-LOGIN_URL = 'http://localhost:8000/rest-auth/login'
+LOGIN_URL = 'http://localhost:8000/api/child/rest-auth/login'
 
 
 MIDDLEWARE = [

@@ -38,24 +38,20 @@ class ParentSerializer(serializers.ModelSerializer):
     images = serializers.ImageField(required=False)
 
 
-    def create(self, validated_data):
-        parent = Parent.objects.create(validated_data['First_name'],
-                                        validated_data['Last_name'],
-                                        validated_data['Gender'],
-                                        validated_data['Email_address'],
-                                        validated_data['Password'],
-                                        validated_data['Phone_number'],
-                                        validated_data['images']
-                                            )
+    # def create(self, validated_data):
+    #     parent = Parent.objects.create(validated_data['First_name'],
+    #                                     validated_data['Last_name'],
+    #                                     validated_data['Gender'],
+    #                                     validated_data['Email_address'],
+    #                                     validated_data['Password'],
+    #                                     validated_data['Phone_number'],
+    #                                     validated_data['images']
+    #                                         )
                                            
-        return parent
-
-
+    #     return parent
     class Meta:
         model = Parent
-        fields = [
-            'First_name', 'Last_name', 'Gender', 'Email_address','Password', 'Phone_number', 'images' 
-        ]
+        fields = '__all__'
 
 class NormalParentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -94,7 +90,7 @@ class Hospital_DetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Details
         fields = [
-            'hospital_Name', 'name', 'hospital', 'address', 'Vaccines' 
+            'hospital_Name', 'name', 'hospital', 'address', 'vaccines' 
         ]
 
 

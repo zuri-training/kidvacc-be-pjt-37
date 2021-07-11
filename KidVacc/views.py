@@ -24,7 +24,7 @@ class ChildDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChildSerializer
 
 
-class ParentList(generics.ListCreateAPIView):
+class ParentList(generics.ListAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
 

@@ -16,7 +16,22 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from django.conf.urls import url
+from rest_framework import permissions
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title = "KidVacc API",
+        default_version = 'v1',
+        description = 'KidVacc API , ZuriXI4G',
+        contact = openapi.Contact(email="help@kidvacc.com"),
+        license = openapi.License(name="BSD License"),
+     ),   
+    public = True,
+    permission_classes = (permissions.AllowAny,),
+    )
 urlpatterns = [
     path('payments/', include('payments.urls')),
     path('admin/', admin.site.urls),
@@ -27,4 +42,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/child/rest-auth/', include('rest_auth.urls')),
     path('api/child/rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('swagger/.json', schema_view.without_ui(cache_timeout=0), name='schema-without-ui'),
+    url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout= 0), name='schema-swagger-ui'),
+    url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    
 ]
