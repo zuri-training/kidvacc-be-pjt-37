@@ -3,6 +3,7 @@ from .views import ChildList, ChildDetail, ParentList, ParentDetail, Hospital_Ty
 
 urlpatterns = [
 
+    
     path('child/', ChildList.as_view(), name="child"), 
     path('child/<int:pk>/', ChildDetail.as_view(), name='detail-child'),
     path('parent', ParentList.as_view(), name="parent"),
