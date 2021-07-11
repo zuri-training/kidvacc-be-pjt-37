@@ -60,12 +60,12 @@ def verify_payment(request, reference):
             if response5['status'] == True and response5['data']['gateway_response'] == 'Approved':
                 new_payment = Payment.objects.create(reference= reference,status=response5['status'],email=response5['data']['customer']['email'])
                 new_payment.save()
-                return Response({"status":"True"}, status=status.HTTP_302_FOUND)
+                return Response({"status":True}, status=status.HTTP_302_FOUND)
 
             if response5['status'] == False:
                 return JsonResponse({"status":"False","message":f"{response5['message']}"}, status=status.HTTP_400_BAD_REQUEST)
            
-            return Response({"status":'False', "message":"Unknown error occured"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status":"False", "message":"Unknown error occured"}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'GET':
