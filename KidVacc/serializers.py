@@ -10,10 +10,7 @@ class ChildSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Child
-        fields = [
-            'id', 'First_name', 'Middle_name', 'Last_name', 'Gender', 'Date_of_birth', 
-            'Blood_group', 'Genotype', 'Vaccination_history','images','date_created'
-        ]
+        fields = '__all__'
 
 
 class ParentSerializer(serializers.ModelSerializer):
@@ -62,7 +59,7 @@ class UserParentUpdateSerializer(serializers.ModelSerializer):
     parent = ParentSerializer()
     class Meta:
         model = get_user_model() 
-        fields = ('username','email','parent')      
+        fields = '__all__'      
     
     def update(self,instance,validated_data):
         instance.username = validated_data.get('username',instance.username)
@@ -89,18 +86,14 @@ class Hospital_DetailsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Hospital_Details
-        fields = [
-            'name', 'hospital', 'address', 'vaccines' 
-        ]
+        fields = '__all__'
 
 
 class Hospital_TypeSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Hospital_Type
-        fields = [
-            'hospital_type','name',
-        ]
+        fields = '__all__'
 
 
 
