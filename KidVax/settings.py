@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     
     # 3rd Party
+    'drf_yasg',
     'rest_framework',
     'drf_multiple_model',
     'rest_framework.authtoken',
