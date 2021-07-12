@@ -2,7 +2,7 @@ from django.db.models import fields
 
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from .models import Child, Parent, Hospital_Details, Hospital_Type,  Appointment
+from .models import Child, Parent, Hospital_Details, Hospital_Type,  Appointment, Vaccine
 from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
 # creating a model serializer
@@ -55,7 +55,6 @@ class ParentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class NormalParentSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(validators=[UniqueValidator(queryset=Parent.objects.all())])
     class Meta:
         model = Parent
         exclude = ('user',)
@@ -88,6 +87,7 @@ class UserParentUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
 class Hospital_DetailsSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -102,7 +102,7 @@ class Hospital_TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Type
         fields = [
-            'name','id'
+             'hospital_type','name',
         ]
 
 
@@ -111,4 +111,11 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
+        fields = '__all__'
+
+
+class VaccineSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Vaccine
         fields = '__all__'

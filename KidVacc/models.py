@@ -1,5 +1,3 @@
-#import uuid
-
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth import get_user_model 
@@ -26,7 +24,7 @@ class Child(models.Model):
     Middle_name = models.CharField(max_length=100)
     Last_name = models.CharField(max_length=100)
     Gender = models.CharField(max_length=25, choices=GENDER_CHOICES)
-    Date_of_birth = models.DateField(auto_now_add=True)
+    Date_of_birth = models.DateField(default=timezone.now)
     Blood_group = models.CharField(max_length=25)
     Genotype = models.TextField()
     Vaccination_history = models.TextField(max_length=250)
@@ -66,51 +64,57 @@ class Parent(models.Model):
     
 
 
+
+
 class Hospital_Details(models.Model):
 
     name = models.CharField(max_length=200)
-    hospital_type = models.ForeignKey('Hospital_Type', on_delete=models.CASCADE, related_name='hospitals')
+    hospital_type = models.ForeignKey('Hospital_Type', on_delete=models.CASCADE, related_name='hospital_details')
     address = models.CharField("Address line 1", max_length=1024)
-    vaccines = models.ManyToManyField('Vaccine',related_name='vaccines')
-    
+    vaccines = models.ManyToManyField('Vaccine')
+   
     def __str__(self):
         return self.name 
 
+
 class Hospital_Type(models.Model):
+    HOSPITAL_TYPE_CHOICES =(
+        ('private','private'),
+        ('public', 'public'),
+    ) 
+    hospital_type = models.CharField(max_length=30, choices=HOSPITAL_TYPE_CHOICES, default='private')
     name = models.CharField(max_length=200)
-    
+
+
     def __str__(self):
         return self.name
+    
+    
 
 class Appointment(models.Model):
     date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, related_name='appointments')
-    child = models.ForeignKey(Child,on_delete = models.CASCADE, related_name='appointments')
+    start_time = models.TimeField
+    end_time = models.TimeField
+    child = models.ForeignKey(Child, on_delete = models.CASCADE, related_name='appointments')
 
     def __str__(self):
-        return f"{self.parent.First_name} {self.parent.Last_name} {self.child.First_name} {self.child.Last_name}"
+        return f" {self.child.First_name} {self.child.Last_name}"
+
+
+
 
 
 class Vaccine(models.Model):
+
+    CHILD_AGE_RANGE_CHOICES =(
+        ('0-6MONTHS','0-6MONTHS'),
+        ('7-12MONTHS', '7-12MONTHS'),
+        ('12-24MONTHS', '12-24MONTHS')
+    )
+
     name = models.CharField(max_length=200)
+    child_age_range = models.CharField(max_length=30, choices=CHILD_AGE_RANGE_CHOICES, default='0-6MONTHS')
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
