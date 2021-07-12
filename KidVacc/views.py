@@ -1,4 +1,4 @@
-
+from django.db import IntegrityError 
 from rest_framework.views import APIView
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
@@ -17,6 +17,12 @@ class ChildList(generics.ListCreateAPIView):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
 
+    def perform_create(self,serializer):
+        user = self.request.user
+        try:
+            serializer.save(parent=user.parent)
+        except IntegrityError:
+            return Response({"detail":"An error occured, please try again."},status=status.HTTP_400_BAD_REQUEST)
 
 class ChildDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthorOrReadOnly,)
@@ -24,7 +30,7 @@ class ChildDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChildSerializer
 
 
-class ParentList(generics.ListCreateAPIView):
+class ParentList(generics.ListAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
 
@@ -60,6 +66,13 @@ class AppointmentList(generics.ListCreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
 
+    def perform_create(self,serializer):
+        user = self.request.user
+        try:
+            serializer.save(parent=user.parent)
+        except IntegrityError:
+            return Response({"detail":"An error occured, please try again."},status=status.HTTP_400_BAD_REQUEST)
+
 
 class AppointmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Appointment.objects.all()
@@ -73,7 +86,7 @@ class AppointmentCreateAPIView(generics.CreateAPIView):
     def perform_create(self,serializer):
         user = self.request.user
         try:
-            serializer.save(parent=user)
+            serializer.save(parent=user.parent)
         except IntegrityError:
             return Response({"detail":"An error occured, please try again."},status=status.HTTP_400_BAD_REQUEST)
 

@@ -1,10 +1,10 @@
 from django.db.models import fields
+
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import Child, Parent, Hospital_Details, Hospital_Type,  Appointment
 from django.contrib.auth import get_user_model
 from rest_auth.registration.serializers import RegisterSerializer
-
 # creating a model serializer
 
 class ChildSerializer(serializers.ModelSerializer):
@@ -39,32 +39,29 @@ class ParentSerializer(serializers.ModelSerializer):
     images = serializers.ImageField(required=False)
 
 
-    def create(self, validated_data):
-        parent = Parent.objects.create(validated_data['First_name'],
-                                        validated_data['Last_name'],
-                                        validated_data['Gender'],
-                                        validated_data['Email_address'],
-                                        validated_data['Password'],
-                                        validated_data['Phone_number'],
-                                        validated_data['images']
-                                            )
+    # def create(self, validated_data):
+    #     parent = Parent.objects.create(validated_data['First_name'],
+    #                                     validated_data['Last_name'],
+    #                                     validated_data['Gender'],
+    #                                     validated_data['Email_address'],
+    #                                     validated_data['Password'],
+    #                                     validated_data['Phone_number'],
+    #                                     validated_data['images']
+    #                                         )
                                            
-        return parent
-
-
+    #     return parent
     class Meta:
         model = Parent
-        fields = [
-            'First_name', 'Last_name', 'Gender', 'Email_address','Password', 'Phone_number', 'images' 
-        ]
+        fields = '__all__'
 
 class NormalParentSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=Parent.objects.all())])
     class Meta:
         model = Parent
         exclude = ('user',)
     
 class UserParentUpdateSerializer(serializers.ModelSerializer):
-    parent = ParentSerializer()
+    parent = NormalParentSerializer()
     class Meta:
         model = get_user_model() 
         fields = ('username','email','parent')      
@@ -83,9 +80,10 @@ class UserParentUpdateSerializer(serializers.ModelSerializer):
         # user_data = {"first_name":f"{first_name}","last_name":"last_name","email":f"{email}"}
         # user_serializer = UserSerializer(data= user_data)
         parent = Parent.objects.get(user=user)
-        parent_serializer = ParentSerializer(data=parent_data)
+        parent_serializer = NormalParentSerializer(data=parent_data)
         
         if parent_serializer.is_valid():
+           
             parent_serializer.update(parent,parent_data)
         instance.save()
         return instance
@@ -95,7 +93,7 @@ class Hospital_DetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Details
         fields = [
-            'hospital_Name', 'name', 'hospital', 'address', 'vaccines' 
+             'name','hospital_type','address','vaccines',
         ]
 
 
@@ -104,7 +102,7 @@ class Hospital_TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital_Type
         fields = [
-            'hospital_type','name',
+            'name','id'
         ]
 
 

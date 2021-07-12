@@ -51,22 +51,25 @@ def verify_payment(request, reference):
     if request.method == 'POST':
         serializer  = OTPSerializer(data = request.data)
         if serializer.is_valid():
-            pin = serializer['pin']
-            otp = serializer['otp']
+            pin = serializer.validated_data.get('pin')
+            otp = serializer.validated_data.get('otp')
             response3 = paystack_charge.submit_otp(otp=otp,reference=reference)
             response2 = paystack_charge.submit_pin(pin =pin,reference=reference)
-            
+            print("SUBMITTING")
             response5 = paystack_charge.check_pending(reference=reference)
-            if response5['status'] == True and response5['data']['gateway_response'] == 'Approved':
+            print("SeNT OUT")
+            if response5['status'] == True :
+                print("SUCCESS")
+                print(response5)
                 new_payment = Payment.objects.create(reference= reference,status=response5['status'],email=response5['data']['customer']['email'])
                 new_payment.save()
-                return Response({"status":True}, status=status.HTTP_302_FOUND)
-
+                return Response({"status":"True","message":"Approved"}, status=status.HTTP_302_FOUND)
+            print("FAILED")
             if response5['status'] == False:
-                return JsonResponse({"status":"False","message":f"{response5['message']}"}, status=status.HTTP_400_BAD_REQUEST)
-           
+                return Response({"status":"False","message":"Failed Payment"}, status=status.HTTP_400_BAD_REQUEST)
+            print ("ME NO KNOW AGAIN O")
             return Response({"status":"False", "message":"Unknown error occured"}, status=status.HTTP_400_BAD_REQUEST)
-
+        
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     if request.method == 'GET':
         payments = Payment.objects.filter(reference=reference)
