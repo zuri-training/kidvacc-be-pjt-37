@@ -17,10 +17,15 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 
 # Create your models here.
 class Child(models.Model):
+    GENDER_CHOICES = (
+        ('F','Female'),
+        ('M','Male')
+    )
+
     First_name = models.CharField(max_length=100)
     Middle_name = models.CharField(max_length=100)
     Last_name = models.CharField(max_length=100)
-    Gender = models.TextField(max_length=25)
+    Gender = models.CharField(max_length=25, choices=GENDER_CHOICES)
     Date_of_birth = models.DateField(auto_now_add=True)
     Blood_group = models.CharField(max_length=25)
     Genotype = models.TextField()

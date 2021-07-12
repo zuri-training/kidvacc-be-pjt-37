@@ -9,4 +9,4 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
             return True
 
     
-        return obj.id == request.user
+        return obj.parent.user == request.user
